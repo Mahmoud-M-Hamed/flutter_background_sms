@@ -1,6 +1,6 @@
 # flutter_background_sms
 
-A new Flutter project.
+A Flutter plugin for sending SMS in the background using native Android and iOS code launches the SMS app.
 
 ## Getting Started
 
