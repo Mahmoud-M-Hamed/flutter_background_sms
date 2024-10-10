@@ -1,5 +1,5 @@
 name: flutter_background_sms
-description: A Flutter plugin for sending SMS using native code for Android and iOS.
+description: A Flutter plugin for sending SMS in background using native code for Android and for iOS launch the SMS app.
 version: 1.0.0
 author: Mahmoud Hamed <mhamed@victorylink.com>
 homepage:
