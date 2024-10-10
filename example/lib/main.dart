@@ -2,30 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_background_sms/flutter_background_sms.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const SmsHomeScreen());
 }
 
 /// The main application widget.
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
+/// The main screen for SMS-related functionality.
+/// Displays a button to send SMS and initializes permissions on startup.
+class SmsHomeScreen extends StatefulWidget {
+  const SmsHomeScreen({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  State<SmsHomeScreen> createState() => _SmsHomeScreenState();
 }
 
-class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown'; // Initialize platform version
-  final FlutterBackgroundSms _flutterSmsPlugin = FlutterBackgroundSmsFactory.create(); // Create instance of FlutterPluginTest
+/// State class for the SmsHomeScreen.
+/// Manages the state and interactions within the screen.
+class _SmsHomeScreenState extends State<SmsHomeScreen> {
+  /// An instance of the service responsible for handling SMS-related operations.
+  final FlutterBackgroundSmsService _flutterBackgroundSmsService = FlutterBackgroundSmsService();
 
   @override
   void initState() {
     super.initState();
-    _initializePermissions(); // Initialize permissions on app start
-  }
-
-  /// Initializes permissions for sending SMS.
-  Future<void> _initializePermissions() async {
-    await _flutterSmsPlugin.initializePermissions();
+    _flutterBackgroundSmsService.initializePermissions(); // Initialize permissions on app start.
   }
 
   @override
@@ -33,33 +32,47 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Plugin Example App'),
+          title: const Text('Plugin Example App'), // Displays the title of the app.
         ),
         body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Running on: $_platformVersion\n'), // Display platform version
-              ElevatedButton(
-                onPressed: _sendSms, // Call the send SMS method when pressed
-                child: const Text('Send SMS'),
-              ),
-            ],
+          child: ElevatedButton(
+            onPressed: _flutterBackgroundSmsService.sendSms, // Calls the send SMS method when pressed.
+            child: const Text('Send SMS'), // Button text to indicate action.
           ),
         ),
       ),
     );
   }
+}
 
-  /// Sends SMS using the Flutter plugin.
-  Future<void> _sendSms() async {
+
+
+/// A service class that handles SMS sending functionality.
+/// It manages the logic for sending SMS using the FlutterBackgroundSms plugin.
+class FlutterBackgroundSmsService {
+  final FlutterBackgroundSms _flutterSmsPlugin = FlutterBackgroundSmsFactory.create();
+
+  /// Initializes permissions for sending SMS.
+  Future<void> initializePermissions() async {
+    await _flutterSmsPlugin.initializePermissions();
+  }
+
+  /// Sends an SMS using the FlutterBackgroundSms plugin.
+  /// This function specifies the recipient's short code, application name, and SIM slot.
+  Future<void> sendSms() async {
     await _flutterSmsPlugin.sendSms(
-      shortCode: '01225554005', // Recipient's shortcode
-      appName: 'stand', // Application name
-      simSlot: 0, // SIM slot to use
-      callback: (Map<String, String> result) {
-        print('Result: $result'); // Handle result of the SMS sending action
-      },
+      shortCode: '1234', // The recipient's shortcode.
+      appName: 'App Name', // The name of the sending application.
+      simSlot: 0, // The SIM slot to use for sending.
+      callback: _handleSmsResult,
     );
+  }
+
+  /// Handles the result of the SMS sending action.
+  /// It logs the result of the SMS operation for debugging purposes.
+  ///
+  /// [result]: A map containing the status of the SMS sending operation.
+  void _handleSmsResult(Map<String, String> result) {
+    print('Result: $result'); // Outputs the result of sending the SMS.
   }
 }
