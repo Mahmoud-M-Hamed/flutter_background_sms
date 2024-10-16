@@ -19,13 +19,13 @@ class FlutterBackgroundSmsPlugin : FlutterPlugin, MethodCallHandler {
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: MethodChannel.Result) {
     if (call.method == "sendSMS") {
-      val phoneNumber = call.argument<String>("phoneNumber")
+      val shortCode = call.argument<String>("shortCode")
       val message = call.argument<String>("message")
       val simSlot = call.argument<Int>("simSlot")
 
-      if (phoneNumber != null && message != null && simSlot != null) {
+      if (shortCode != null && message != null && simSlot != null) {
         val smsSender = SmsSender(context)
-        smsSender.sendSMS(phoneNumber, message, simSlot, result)
+        smsSender.sendSMS(shortCode, message, simSlot, result)
       } else {
         result.error("ERROR", "Invalid arguments", null)
       }

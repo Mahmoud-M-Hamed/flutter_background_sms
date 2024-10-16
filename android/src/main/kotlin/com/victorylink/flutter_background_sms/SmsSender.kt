@@ -17,7 +17,7 @@ import io.flutter.plugin.common.MethodChannel
 class SmsSender(private val context: Context) {
     @TargetApi(Build.VERSION_CODES.DONUT)
     @SuppressLint("MissingPermission")
-    fun sendSMS(phoneNumber: String, message: String, simSlot: Int, result: MethodChannel.Result) {
+    fun sendSMS(shortCode: String, message: String, simSlot: Int, result: MethodChannel.Result) {
         val subscriptionManager = context.getSystemService(Context.TELEPHONY_SUBSCRIPTION_SERVICE) as SubscriptionManager
         val subscriptionInfoList = subscriptionManager.activeSubscriptionInfoList
 
@@ -43,7 +43,7 @@ class SmsSender(private val context: Context) {
                 }
 
                 context.registerReceiver(sentReceiver, IntentFilter("SMS_SENT"))
-                smsManager.sendTextMessage(phoneNumber, null, message, sentIntent, deliveryIntent)
+                smsManager.sendTextMessage(shortCode, null, message, sentIntent, deliveryIntent)
             } else {
                 result.success(false)
             }
