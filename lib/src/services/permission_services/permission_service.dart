@@ -41,23 +41,3 @@ class PermissionService {
     return smsStatus.isGranted; /// Return true if SMS permission is granted
   }
 }
-
-/// The PermissionStatusService class encapsulates permission status checks.
-///
-/// This class is designed to focus solely on checking permission statuses,
-/// adhering to the Single Responsibility Principle (SRP) and allowing for
-/// easier maintenance and potential extension of permission status checks.
-class PermissionStatusService {
-  /// Checks if a specific permission is granted.
-  ///
-  /// This method checks the current status of a given permission.
-  ///
-  /// Parameters:
-  /// - [permission] The permission to check status for.
-  ///
-  /// Returns:
-  /// A [Future<bool>] indicating whether the specified permission is granted.
-  Future<bool> isPermissionGranted(Permission permission) async {
-    return (await permission.status).isGranted; // Return true if the specified permission is granted
-  }
-}
