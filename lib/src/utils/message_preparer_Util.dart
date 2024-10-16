@@ -1,3 +1,4 @@
+/*
 import 'package:flutter_background_sms/src/provider/uuid_provider.dart';
 import 'package:flutter_background_sms/src/services/storage_service/secure_storage.dart';
 import 'package:flutter_background_sms/src/utils/hashing_util.dart';
@@ -15,3 +16,4 @@ class MessagePreparer {
     return await HashingUtil.hashMessage(randomMessage); // Return the hashed UUID
   }
 }
+*/

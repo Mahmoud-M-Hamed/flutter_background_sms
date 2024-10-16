@@ -13,7 +13,7 @@ abstract class ISmsService {
   /// - [simSlot]: The SIM slot to use for sending the SMS (0 for SIM1, 1 for SIM2).
   /// - [callBack]: A callback function that receives the result of the SMS sending operation.
   /// - [shortCode]: The recipient's shortcode to which the SMS will be sent.
-  /// - [appName]: The name of the application sending the SMS.
+  /// - [message]: The message body to be sent.
   ///
   /// Returns:
   /// A [Future<bool>] indicating whether the SMS was sent successfully.
@@ -21,7 +21,7 @@ abstract class ISmsService {
     required int simSlot,
     required SmsResultCallback callBack,
     required String shortCode,
-    required String appName,
+    required String message,
   });
 
   /// Sends an SMS message on iOS devices.
@@ -29,14 +29,14 @@ abstract class ISmsService {
   /// Parameters:
   /// - [callBack]: A callback function that receives the result of the SMS sending operation.
   /// - [shortCode]: The recipient's shortcode to which the SMS will be sent.
-  /// - [appName]: The name of the application sending the SMS.
+  /// - [message]: The message body to be sent.
   ///
   /// Returns:
   /// A [Future<void>] indicating the completion of the SMS sending operation.
   Future<void> sendIosSms({
     required SmsResultCallback callBack, /// Callback function with result map
     required String shortCode,
-    required String appName,
+    required String message,
   });
 }
 

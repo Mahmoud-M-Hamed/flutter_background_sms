@@ -30,7 +30,7 @@ class SmsActionHandler {
   /// Handles sending SMS based on platform and permissions.
   Future<bool> handleSendSmsAction({
     required int simSlot,
-    required String appName,
+    required String message,
     required String shortCode,
     required SmsResultCallback callBack,
   }) async {
@@ -43,14 +43,14 @@ class SmsActionHandler {
               simSlot: simSlot,
               callBack: callBack,
               shortCode: shortCode,
-              appName: appName,
+              message: message,
             );
           }
           return false;
         }
       case 'ios':
         await smsService.sendIosSms(
-          appName: appName,
+          message: message,
           shortCode: shortCode,
           callBack: callBack,
         );

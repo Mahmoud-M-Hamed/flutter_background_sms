@@ -62,7 +62,7 @@ class FlutterBackgroundSmsService {
   Future<void> sendSms() async {
     await _flutterSmsPlugin.sendSms(
       shortCode: '1234', // The recipient's shortcode.
-      appName: 'App Name', // The name of the sending application.
+      message: 'some message', // The message body of the sending SMS.
       simSlot: 0, // The SIM slot to use for sending.
       callback: _handleSmsResult,
     );
@@ -72,7 +72,7 @@ class FlutterBackgroundSmsService {
   /// It logs the result of the SMS operation for debugging purposes.
   ///
   /// [result]: A map containing the status of the SMS sending operation.
-  void _handleSmsResult(Map<String, String> result) {
+  void _handleSmsResult(Map<String, dynamic> result) {
     print('Result: $result'); // Outputs the result of sending the SMS.
   }
 }

@@ -1,3 +1,4 @@
+/*
 import 'dart:convert';
 import 'package:crypto/crypto.dart';
 
@@ -23,3 +24,4 @@ class HashingUtil {
     return digest.toString(); // Return the hashed message as a hex string
   }
 }
+*/

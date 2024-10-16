@@ -5,7 +5,7 @@ import 'package:flutter_background_sms/src/services/sms_services/sms_service.dar
 
 /// The main class for managing SMS operations.
 class FlutterBackgroundSms {
-  /// The singleton instance of [FlutterPluginTest].
+  /// The singleton instance of [FlutterBackgroundSms].
   static final FlutterBackgroundSms _instance = FlutterBackgroundSms._internal();
 
   /// Returns the singleton instance of [FlutterPluginTest].
@@ -29,20 +29,20 @@ class FlutterBackgroundSms {
 
   /// Sends an SMS using the specified parameters.
   ///
-  /// [appName] is the name of the application.
+  /// [message] The message body to be sent.
   /// [shortCode] is the recipient's shortcode.
   /// [simSlot] specifies the SIM slot to use.
   /// [callback] is the function to handle the result of the SMS action.
   Future<void> sendSms({
     required String shortCode,
-    required String appName,
+    required String message,
     required int simSlot,
     required SmsResultCallback callback,
   }) async {
     try {
       await _smsActionHandler.handleSendSmsAction(
         simSlot: simSlot,
-        appName: appName,
+        message: message,
         shortCode: shortCode,
         callBack: callback,
       );
@@ -64,8 +64,8 @@ class FlutterBackgroundSmsFactory {
     );
 
     /// Get the singleton instance of FlutterBackgroundSms.
-    final FlutterBackgroundSms flutterPluginTest = FlutterBackgroundSms.instance;
-    flutterPluginTest.initialize(smsActionHandler);
-    return flutterPluginTest;
+    final FlutterBackgroundSms flutterBackgroundSms = FlutterBackgroundSms.instance;
+    flutterBackgroundSms.initialize(smsActionHandler);
+    return flutterBackgroundSms;
   }
 }

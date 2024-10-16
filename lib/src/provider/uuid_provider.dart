@@ -1,3 +1,4 @@
+/*
 import 'package:uuid/uuid.dart';
 
 /// A provider class for generating UUIDs (Universally Unique Identifiers).
@@ -18,3 +19,4 @@ class UUIDProvider {
     return const Uuid().v4(); // Return a randomly generated UUID
   }
 }
+*/

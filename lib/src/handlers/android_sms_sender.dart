@@ -1,3 +1,4 @@
+/*
 import 'package:flutter_background_sms/src/handlers/sms_result_handler.dart';
 import 'package:flutter_background_sms/src/services/sms_services/sms_service_interface.dart';
 
@@ -22,15 +23,16 @@ class AndroidSmsSender {
   /// Returns a boolean indicating the success of the SMS sending action.
   Future<bool> sendSms({
     required int simSlot,
-    required String appName,
+    required String message,
     required String shortCode,
     required SmsResultCallback callBack,
   }) async {
     return await smsService.sendAndroidSms(
       simSlot: simSlot,
-      appName: appName,
+      message: message,
       shortCode: shortCode,
       callBack: callBack,
     );
   }
 }
+*/
