@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_background_sms/flutter_background_sms.dart';
+import 'package:flutter_background_sms/flutter_background_sms_factory.dart';
 
 void main() {
   runApp(const SmsHomeScreen());

@@ -1,7 +1,5 @@
 import 'package:flutter_background_sms/src/handlers/sms_action_handler.dart';
 import 'package:flutter_background_sms/src/handlers/sms_result_handler.dart';
-import 'package:flutter_background_sms/src/services/permission_services/permission_service.dart';
-import 'package:flutter_background_sms/src/services/sms_services/sms_service.dart';
 
 /// The main class for managing SMS operations.
 class FlutterBackgroundSms {
@@ -49,23 +47,5 @@ class FlutterBackgroundSms {
     } catch (e) {
       FormatException('Failed to send SMS: $e');
     }
-  }
-}
-
-/// A factory for creating instances of [FlutterBackgroundSms] with dependencies.
-class FlutterBackgroundSmsFactory {
-  /// Creates an instance of [FlutterBackgroundSms] with default dependencies.
-  static FlutterBackgroundSms create() {
-    final permissionService = PermissionService();
-    final smsService = SmsService();
-    final smsActionHandler = SmsActionHandler(
-      permissionService: permissionService,
-      smsService: smsService,
-    );
-
-    /// Get the singleton instance of FlutterBackgroundSms.
-    final FlutterBackgroundSms flutterBackgroundSms = FlutterBackgroundSms.instance;
-    flutterBackgroundSms.initialize(smsActionHandler);
-    return flutterBackgroundSms;
   }
 }
