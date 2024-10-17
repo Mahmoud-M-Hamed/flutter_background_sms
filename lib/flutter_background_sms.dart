@@ -6,7 +6,7 @@ class FlutterBackgroundSms {
   /// The singleton instance of [FlutterBackgroundSms].
   static final FlutterBackgroundSms _instance = FlutterBackgroundSms._internal();
 
-  /// Returns the singleton instance of [FlutterPluginTest].
+  /// Returns the singleton instance of [FlutterBackgroundSms].
   static FlutterBackgroundSms get instance => _instance;
 
   /// Private constructor to ensure the singleton pattern.
